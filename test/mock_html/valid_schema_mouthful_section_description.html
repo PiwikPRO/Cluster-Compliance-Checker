@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cluster Compliance Checker - Report</title>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-icons.css">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <script src="bootstrap.bundle.min.js"></script>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3 class="text-center mb-5 pt-3">Piwik PRO Cluster Compliance Checker</h3>
+                <h1 class="mb-3 pt-1">Result:</h1>
+
+                <div class="mt-2 p-3 alert alert-danger text-center">
+                    Your infrastructure is <strong>not</strong> capable of running Piwik PRO Analytics Suite<sup>©</sup>
+                </div>
+
+                <h2 class="mt-4 pt-4">Performed checks:</h2>
+
+                <div class="accordion">
+                
+                                        <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-md-1">
+                                    <a class="section-arrow text-muted" data-bs-toggle="collapse" href="#Bar"></a>
+                                </div>
+                                <div class="col-md-11">
+                                    <h4>Section: Bar</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Bar" class="collapse show">
+                            <div class="card-body px-5">
+                                <div class="row">
+                                    <div class="col-md-5 mb-1 p-2 text-secondary"><small>Bar is example section for bar type checks</small></div>
+                                    <div class="col-md-7"></div>
+                                </div>
+                            
+                                                                <div class="row mt-2 p-3 bg-danger rounded">
+                                    <div class="col-md-7">
+                                        <h5>Foobar version</h5>
+                                        <small class="text-black-50">Sed do eiusmod tempor incididunt ut labore</small>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <table class="text-center table bg-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expected</th>
+                                                    <th>Measured</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&gt; 9000</td>
+                                                    <td>1337</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                            
+                                                                <div class="row mt-2 p-3 bg-success rounded">
+                                    <div class="col-md-7">
+                                        <h5>Foobar admin privileges</h5>
+                                        <small class="text-black-50">Ut enim ad minim veniam</small>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <table class="text-center table bg-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expected</th>
+                                                    <th>Measured</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>true</td>
+                                                    <td>true</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                
+                
+                                        <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-md-1">
+                                    <a class="section-arrow text-muted" data-bs-toggle="collapse" href="#Foo"></a>
+                                </div>
+                                <div class="col-md-11">
+                                    <h4>Section: Foo</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="Foo" class="collapse">
+                            <div class="card-body px-5">
+                                <div class="row">
+                                    <div class="col-md-5 mb-1 p-2 text-secondary"><small>Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet </small></div>
+                                    <div class="col-md-7"></div>
+                                </div>
+                            
+                            
+                                                                <div class="row mt-2 p-3 bg-success rounded">
+                                    <div class="col-md-7">
+                                        <h5>sys.max_opened_foobars</h5>
+                                        <small class="text-black-50">Lorem ipsum dolor sit amet</small>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <table class="text-center table bg-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expected</th>
+                                                    <th>Measured</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&gt; 1000</td>
+                                                    <td>1337</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                                                                <div class="row mt-2 p-3 bg-success rounded">
+                                    <div class="col-md-7">
+                                        <h5>sys.min_foobar_value</h5>
+                                        <small class="text-black-50">Consectetur adipiscing elit</small>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <table class="text-center table bg-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expected</th>
+                                                    <th>Measured</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&lt; 20000</td>
+                                                    <td>13370</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+            <div class=col-md-2></div>
+        </div>
+    </body>
+</html>

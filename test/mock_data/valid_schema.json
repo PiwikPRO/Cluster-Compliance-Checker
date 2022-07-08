@@ -1,0 +1,56 @@
+{
+    "result": false,
+    "major_problems": [],
+    "sections": [
+        {
+            "name": "Foo",
+            "description": "Foo is example section for foo checks",
+            "result": true,
+            "checks": [
+                {
+                    "name": "sys.max_opened_foobars",
+                    "description": "Lorem ipsum dolor sit amet",
+                    "check": {
+                        "result": true,
+                        "measured": "1337",
+                        "expected": "> 1000"
+                    }
+                },
+                {
+                    "name": "sys.min_foobar_value",
+                    "description": "Consectetur adipiscing elit",
+                    "check": {
+                        "result": true,
+                        "measured": "13370",
+                        "expected": "< 20000"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Bar",
+            "description": "Bar is example section for bar type checks",
+            "result": false,
+            "checks": [
+                {
+                    "name": "Foobar version",
+                    "description": "Sed do eiusmod tempor incididunt ut labore",
+                    "check": {
+                        "result": false,
+                        "measured": "1337",
+                        "expected": "> 9000"
+                    }
+                },
+                {
+                    "name": "Foobar admin privileges",
+                    "description": "Ut enim ad minim veniam",
+                    "check": {
+                        "result": true,
+                        "measured": "true",
+                        "expected": "true"
+                    }
+                }
+            ]
+        }
+    ]
+}

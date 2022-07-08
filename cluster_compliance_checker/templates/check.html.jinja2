@@ -1,0 +1,23 @@
+                                <div class="row mt-2 p-3 bg-{% if check.check.result == false %}danger{% else %}success{% endif %} rounded">
+                                    <div class="col-md-7">
+                                        <h5>{{ check.name | e }}</h5>
+                                        <small class="text-black-50">{{ check.description | e }}</small>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-3">
+                                        <table class="text-center table bg-light">
+                                            <thead>
+                                                <tr>
+                                                    <th>Expected</th>
+                                                    <th>Measured</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>{{ check.check.expected | e }}</td>
+                                                    <td>{{ check.check.measured | e }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>

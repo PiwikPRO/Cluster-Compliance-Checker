@@ -1,0 +1,26 @@
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <div class="row align-items-center">
+                                <div class="col-md-1">
+                                    <a class="section-arrow text-muted" data-bs-toggle="collapse" href="#{{ section.name | id_sanitize }}"></a>
+                                </div>
+                                <div class="col-md-11">
+                                    <h4>Section: {{ section.name | e }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="{{ section.name | id_sanitize }}" class="collapse{% if section.result == false %} show{% endif %}">
+                            <div class="card-body px-5">
+                                <div class="row">
+                                    <div class="col-md-5 mb-1 p-2 text-secondary"><small>{{ section.description | e }}</small></div>
+                                    <div class="col-md-7"></div>
+                                </div>
+                            {% for check in section.checks if check.check.result == false %}
+                                {% include 'check.html.jinja2' %}
+                            {% endfor %}
+                            {% for check in section.checks if check.check.result == true %}
+                                {% include 'check.html.jinja2' %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                    </div>

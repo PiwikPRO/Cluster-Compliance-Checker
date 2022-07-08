@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cluster Compliance Checker - Report</title>
+        <link rel="stylesheet" href="bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-icons.css">
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <script src="bootstrap.bundle.min.js"></script>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h3 class="text-center mb-5 pt-3">Piwik PRO Cluster Compliance Checker</h3>
+                <h1 class="mb-3 pt-1">Result:</h1>
+
+                <div class="mt-2 p-3 alert alert-{% if report.result == false %}danger{% else %}success{% endif %} text-center">
+                    Your infrastructure is{% if report.result == false %} <strong>not</strong>{% endif %} capable of running Piwik PRO Analytics Suite<sup>©</sup>
+                </div>
+
+                {% for major_problem in report.major_problems %}
+                <div class="mt-2 p-3 alert alert-danger text-center">
+                    {{ major_problem }}
+                </div>
+                {% endfor %}
+
+                <h2 class="mt-4 pt-4">Performed checks:</h2>
+
+                <div class="accordion">
+                {% for section in report.sections if section.result == false %}
+                    {% include 'section.html.jinja2' %}
+                {% endfor %}
+                {% for section in report.sections if section.result == true %}
+                    {% include 'section.html.jinja2' %}
+                {% endfor %}
+                </div>
+            </div>
+            <div class=col-md-2></div>
+        </div>
+    </body>
+</html>

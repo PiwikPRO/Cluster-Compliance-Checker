@@ -1,0 +1,9 @@
+.section-arrow::after {
+    content: "\F231";
+    font-size: 2rem;
+    font-family: "bootstrap-icons";
+}
+
+.section-arrow[aria-expanded="true"]::after {
+    content: "\F229";
+}

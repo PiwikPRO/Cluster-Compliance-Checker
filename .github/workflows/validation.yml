@@ -1,0 +1,39 @@
+---
+name: Lint and test
+
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+          cache: "poetry"
+
+      - name: Install dependencies
+        run: |
+          poetry env use "3.9"
+          poetry install --no-interaction
+
+      - name: Lint with pylama
+        run: poetry run pylama
+
+      - name: Lint with black
+        run: poetry run black --check --diff .
+
+      - name: Test with pytest
+        run: poetry run pytest -vv
