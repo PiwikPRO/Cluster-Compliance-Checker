@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.name }}
+  namespace: {{ template "namespace" . }}
+  labels:
+{{ include "labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+{{ include "app" . | indent 6 }}
+  serviceName: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+{{ include "labels" . | indent 8 }}
+    spec:
+      {{- if .Values.affinity }}
+      affinity:
+        {{- toYaml .Values.affinity | nindent 8 }}
+      {{- end }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+        {{- toYaml .Values.tolerations | nindent 8 }}
+      {{- end }}
+      securityContext:
+        runAsUser: {{ .Values.security.runAsUser }}
+        runAsGroup: {{ .Values.security.runAsGroup }}
+        fsGroup: {{ .Values.security.fsGroup }}
+      {{- if .Values.deployRBAC }}
+      serviceAccountName: {{ .Values.name }}
+      {{- end }}
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.docker.registry }}/{{ .Values.docker.image }}:{{ template "tag" . }}
+          imagePullPolicy: {{ .Values.docker.pullPolicy }}
+          securityContext:
+            allowPrivilegeEscalation: {{ .Values.security.allowPrivilegeEscalation }}
+          resources:
+            requests:
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
+{{- if .Values.env }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.name }}-env
+{{- end }}
+          ports:
+            - name: report
+              containerPort: {{ .Values.env.PP_PORT }}
+          volumeMounts:
+          - name: report
+            mountPath: {{ .Values.reportStorageDir }}
+  volumeClaimTemplates:
+  - metadata:
+      name: report
+      labels:
+{{ include "labels" . | indent 8 }}
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: {{ .Values.persistence.size }}

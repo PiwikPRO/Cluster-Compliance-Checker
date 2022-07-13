@@ -1,0 +1,28 @@
+---
+name: cluster-compliance-checker
+namespaceOverride:
+affinity:
+replicaCount: 1
+security:
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+  allowPrivilegeEscalation: false
+docker:
+  registry: ghcr.io
+  image: piwikpro/cluster-compliance-checker
+  tag:
+  pullPolicy: IfNotPresent
+resources:
+  requests:
+    memory: 32Mi
+    cpu: 10m
+  limits:
+    memory: 512Mi
+    cpu: 1000m
+persistence:
+  size: 1Gi
+reportStorageDir: "/app/report"
+env:
+  PP_PORT: "8080"
+deployRBAC: true
