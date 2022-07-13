@@ -35,7 +35,7 @@ def get_kubernetes_client() -> Generator[ApiClient, None, None]:
 
     with ApiClient() as api_client:  # type: ignore
         try:
-            api_client.call_api("/readyz", "GET")
+            api_client.call_api("/readyz", "GET", auth_settings=["BearerToken"])
         except (ApiException, MaxRetryError) as ex:
             raise KubernetesClientError("Kubernetes health check failed") from ex
         yield api_client
