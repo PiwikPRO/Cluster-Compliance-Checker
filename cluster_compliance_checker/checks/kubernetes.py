@@ -17,20 +17,6 @@ class Kubernetes(Section):
     description = "Checks related to kubernetes settings"
 
 
-def get_nodes_list_by_label(
-    kubernetes_client: ApiClient, labels: dict[str, str]
-) -> list[client.V1Node]:
-    """Fetch list of nodes that match given labels"""
-
-    def match_labels(node: client.V1Node):
-        return labels.items() <= node.metadata.labels.items()  # type: ignore
-
-    api = client.CoreV1Api(kubernetes_client)
-    nodes = api.list_node().items
-    filtered_nodes = filter(match_labels, nodes)
-    return list(filtered_nodes)
-
-
 @Kubernetes.register
 class KubernetesVersion(AbstractCheck):
     name = "Kubernetes version"
