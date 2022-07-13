@@ -1,7 +1,7 @@
 import pytest
 from kubernetes import client
 
-from cluster_compliance_checker.checks.kubernetes import KubernetesVersion, get_nodes_list_by_label
+from cluster_compliance_checker.checks.kubernetes import KubernetesVersion
 from cluster_compliance_checker.schema import CheckResult
 
 
@@ -60,47 +60,3 @@ def test_kubernetes_check(endpoints, check, expected_result):
 
     check.kubernetes_client = api_client
     assert check.perform_check() == expected_result
-
-
-@pytest.mark.parametrize(
-    "endpoints,label,expected_result",
-    [
-        (
-            [("/api/v1/nodes", mk_node_list([{"name": "foo", "labels": {"services": "true"}}]))],
-            {"services": "true"},
-            mk_node_list([{"name": "foo", "labels": {"services": "true"}}]).items,
-        ),
-        (
-            [
-                (
-                    "/api/v1/nodes",
-                    mk_node_list(
-                        [
-                            {"name": "foo", "labels": {"services": "true"}},
-                            {"name": "bar", "labels": {"services": "true"}},
-                            {"name": "foobar", "labels": {"other": "true"}},
-                        ]
-                    ),
-                )
-            ],
-            {"services": "true"},
-            mk_node_list(
-                [
-                    {"name": "foo", "labels": {"services": "true"}},
-                    {"name": "bar", "labels": {"services": "true"}},
-                ]
-            ).items,
-        ),
-        (
-            [("/api/v1/nodes", mk_node_list([{"name": "foobar", "labels": {"other": "true"}}]))],
-            {"services": "true"},
-            mk_node_list([]).items,
-        ),
-    ],
-)
-def test_get_nodes_list_by_label(endpoints, label, expected_result):
-    api_client = ApiClientMock()
-    for path, response in endpoints:
-        api_client.register_mock_endpoint(path, response)
-
-    assert get_nodes_list_by_label(api_client, label) == expected_result  # type: ignore

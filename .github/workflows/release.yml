@@ -1,0 +1,29 @@
+---
+name: Release
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    tags:
+      - "*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Setup helm
+        uses: azure/setup-helm@v3
+
+      - name: Package chart
+        run: helm package --destination build ./helm
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "build/*.tgz"
