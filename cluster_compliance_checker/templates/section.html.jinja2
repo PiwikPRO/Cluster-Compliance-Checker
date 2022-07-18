@@ -2,7 +2,7 @@
                         <div class="card-header">
                             <div class="row align-items-center">
                                 <div class="col-md-1">
-                                    <a class="section-arrow text-muted" data-bs-toggle="collapse" href="#{{ section.name | id_sanitize }}"></a>
+                                    <a class="section-arrow text-muted" data-bs-toggle="collapse" href="#{{ section.name | id_sanitize }}" aria-expanded="{% if section.result == true %}false{% else %}true{% endif %}" style="text-decoration: none;"></a>
                                 </div>
                                 <div class="col-md-11">
                                     <h4>Section: {{ section.name | e }}</h4>
