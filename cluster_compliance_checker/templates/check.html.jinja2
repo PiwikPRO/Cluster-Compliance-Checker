@@ -1,7 +1,7 @@
-                                <div class="row mt-2 p-3 bg-{% if check.check.result == false %}danger{% else %}success{% endif %} rounded">
+                                <div class="row mt-2 p-3 bg-{% if check.check.result == false %}danger{% else %}success{% endif %} rounded" style="--bs-bg-opacity: .75;">
                                     <div class="col-md-7">
                                         <h5>{{ check.name | e }}</h5>
-                                        <small class="text-black-50">{{ check.description | e }}</small>
+                                        <small class="text-black">{{ check.description | e }}</small>
                                     </div>
                                     <div class="col-md-2"></div>
                                     <div class="col-md-3">
