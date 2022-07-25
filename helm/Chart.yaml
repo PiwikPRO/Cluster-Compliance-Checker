@@ -1,7 +1,7 @@
 ---
 apiVersion: v2
 name: cluster-compliance-checker
-version: 1.1.1
+version: 1.2.1
 description: Tool used to ensure compliance of provided kubernetes cluster.
 maintainers:
   - email: p.miszkiel@piwik.pro

@@ -14,7 +14,7 @@ This chart deploys:
 Pre-contract phase is the default mode of Cluster Compliance Checker.
 
 ```bash
-CHART=https://github.com/PiwikPRO/cluster-compliance-checker/releases/download/1.1.0/cluster-compliance-checker-1.1.0.tgz
+CHART=https://github.com/PiwikPRO/cluster-compliance-checker/releases/download/1.2.0/cluster-compliance-checker-1.2.0.tgz
 helm install cluster-compliance-checker $CHART
 ```
 
