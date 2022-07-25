@@ -47,9 +47,19 @@ def mk_node_list(nodes):
     "endpoints,check,expected_result",
     [
         (
-            [("/version/", mk_version_info(git_version="v1.23.0"))],
+            [("/version/", mk_version_info(git_version="v1.21.0"))],
             KubernetesVersion(),
-            CheckResult(True, "v1.23.0", ">v1.21.0 and <v1.24.0"),
+            CheckResult(True, "v1.21", ">=1.21 and <=1.24"),
+        ),
+        (
+            [("/version/", mk_version_info(git_version="v1.23.0-eks.232"))],
+            KubernetesVersion(),
+            CheckResult(True, "v1.23", ">=1.21 and <=1.24"),
+        ),
+        (
+            [("/version/", mk_version_info(git_version="1.25.1+dev.232"))],
+            KubernetesVersion(),
+            CheckResult(False, "1.25", ">=1.21 and <=1.24"),
         ),
     ],
 )

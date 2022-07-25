@@ -1,3 +1,4 @@
+import re
 from typing import Optional
 
 from dependency_injector.wiring import Provide
@@ -24,19 +25,22 @@ class KubernetesVersion(AbstractCheck):
     kubernetes_client: ApiClient = Provide[Dependencies.kubernetes_client]
 
     def perform_check(self) -> schema.CheckResult:
-        supported_min_ver_k8s = "v1.21.0"
-        supported_max_ver_k8s = "v1.24.0"
+        supported_min_ver_k8s = "1.21"
+        supported_max_ver_k8s = "1.24"
 
         api = client.VersionApi(self.kubernetes_client)
         measured_ver_k8s = str(api.get_code().git_version)
+        measured_ver_k8s = re.search(r"^v?([0-9]+)(\.([0-9]+)){1,1}", measured_ver_k8s).group(0)
+
         result = version.parse(supported_min_ver_k8s) <= version.parse(
             measured_ver_k8s
         ) and version.parse(supported_max_ver_k8s) >= version.parse(measured_ver_k8s)
+        # result = version.parse(supported_min_ver_k8s) == version.parse(measured_ver_k8s)
 
         return schema.CheckResult(
             result=result,
             measured=measured_ver_k8s,
-            expected=f">{supported_min_ver_k8s} and <{supported_max_ver_k8s}",
+            expected=f">={supported_min_ver_k8s} and <={supported_max_ver_k8s}",
         )
 
 
