@@ -43,6 +43,10 @@ docker run -it ghcr.io/piwikpro/cluster-compliance-checker:latest --help
 Once all checks are done, report will be served on the port 8080.
 Open `http://localhost:8080` in the browser to view it.
 
+## Run using Helm
+
+To run the Cluster Compliance Checker using Helm, see [this document](helm/README.md).
+
 ## Technology stack
 
 ### Poetry
